@@ -1,18 +1,22 @@
 let newArray = [];
 
 
-function getPhotoApi() {
-    return fetch(
-        "https://api.nasa.gov/planetary/apod?start_date=2024-08-27&end_date=2024-08-29&api_key=podRVC8objAhx7IraJtGncf5cZxYXZYoUsHChWyc"
-    )
-    .then(response => response.json())
-    .then(data => {
+
+// vs code suggested asycn function and i stuck it in here before the function was regular, doing research to figure out how this impacts my code and what it is
+async function getPhotoApi() {
+    try {
+        const response = await fetch(
+            "https://api.nasa.gov/planetary/apod?start_date=2024-08-27&end_date=2024-08-29&api_key=podRVC8objAhx7IraJtGncf5cZxYXZYoUsHChWyc"
+        );
+        const data = await response.json();
         newArray = data;
         console.log("Data stored in array:", newArray);
-    })
-    .catch(error => console.error("Error fetching data:", error)); 
+        displayCards();
+    } catch (error) {
+        return console.error("Error fetching data:", error);
+    } 
 
-  displayCards();
+  
 };
 
 function displayCards() {
@@ -32,13 +36,13 @@ function displayCards() {
     }
 };
 
-function showPicture() {
-    getPhotoApi().then(() => {
-        displayCards();
-    });
-}
+// function showPicture() {
+//     getPhotoApi().then(() => {
+//         displayCards();
+//     });
+// }
 
-showPicture();
+// showPicture();
 
 const refreshButton = document.querySelector('.reset');
 const refreshPage = () => {
