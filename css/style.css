@@ -1,3 +1,10 @@
+.card-holder{
+    display: inline-block;
+}
+
+
+
+
 .top{
     text-align: center;
     border:black 5px solid;
@@ -33,4 +40,10 @@ card img {
         grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
     }
+}
+
+.reset{
+    align-items: center;
+    font-size: larger;
+    margin-left: 15rem;
 }
